@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
 import { Play, ArrowRight, Video, Scissors, Sparkles, MousePointer2 } from 'lucide-react';
-import Scene from './Scene';
+
+// Lazy load the 3D scene for better initial page performance
+const Scene = lazy(() => import('./Scene'));
 
 const Hero: React.FC = () => {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -19,9 +21,11 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,77,0,0.08),transparent_60%)]" />
       <div className="absolute top-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      {/* 3D Scene Background (Subtle) */}
+      {/* 3D Scene Background (Subtle) - Lazy loaded for performance */}
       <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none">
-        <Scene />
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full pt-20">
