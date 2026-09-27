@@ -86,20 +86,31 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, title, isActive, onP
         iv_load_policy: 3,
         showinfo: 0,
         disablekb: 1,
-        fs: 0, // customized fullscreen
+        fs: 0,
+        cc_load_policy: 0,   // disable captions
+        cc_lang_pref: 'en',  // suppress auto-caption language
+        hl: 'en',            // UI language
+        hd: 1,               // prefer HD
       },
       events: {
         onReady: (event: any) => {
-          // Do NOT set videoLoaded=true here. Wait for PLAYING.
           setDuration(event.target.getDuration());
-          event.target.setPlaybackQuality('hd1080'); // Force HD
+          // Force highest quality
+          event.target.setPlaybackQuality('hd1080');
+          if (event.target.setPlaybackQualityRange) {
+            event.target.setPlaybackQualityRange('hd720', 'hd1080');
+          }
+          // Ensure captions are off
+          event.target.unloadModule('captions');
           event.target.playVideo();
         },
         onStateChange: (event: any) => {
           if (event.data === window.YT.PlayerState.PLAYING) {
-            setVideoLoaded(true); // Reveal video now
+            setVideoLoaded(true);
             setIsPlaying(true);
             startProgressLoop();
+            // Re-enforce quality each time playback starts (YouTube can downgrade)
+            event.target.setPlaybackQuality('hd1080');
           } else {
             setIsPlaying(false);
             stopProgressLoop();
