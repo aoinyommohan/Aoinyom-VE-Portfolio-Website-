@@ -100,7 +100,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, title, isActive, onP
           if (event.target.setPlaybackQualityRange) {
             event.target.setPlaybackQualityRange('hd720', 'hd1080');
           }
-          // Ensure captions are off
+          // Disable ALL captions including auto-generated
+          event.target.loadModule('captions');
+          event.target.setOption('captions', 'track', {});
+          event.target.setOption('captions', 'reload', true);
           event.target.unloadModule('captions');
           event.target.playVideo();
         },
@@ -109,8 +112,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, title, isActive, onP
             setVideoLoaded(true);
             setIsPlaying(true);
             startProgressLoop();
-            // Re-enforce quality each time playback starts (YouTube can downgrade)
+            // Re-enforce quality
             event.target.setPlaybackQuality('hd1080');
+            // Re-kill captions (YouTube re-enables them on state change)
+            event.target.loadModule('captions');
+            event.target.setOption('captions', 'track', {});
+            event.target.unloadModule('captions');
           } else {
             setIsPlaying(false);
             stopProgressLoop();
