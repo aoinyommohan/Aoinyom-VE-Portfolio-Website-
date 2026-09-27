@@ -35,9 +35,9 @@ const About: React.FC = () => {
             className="relative hidden lg:block"
           >
             {/* Height adjusted to fit full image without cropping head */}
-            <div className="relative w-full aspect-[4/5] rounded-[40px] overflow-hidden border border-white/10 bg-white/5 shadow-2xl flex items-end justify-center">
+            <div className="relative w-full aspect-[9/16] rounded-[40px] overflow-hidden border border-white/10 bg-white/5 shadow-2xl flex items-end justify-center">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,77,0,0.1),transparent_60%)]" />
-              <img src="/cartoon.png" alt="Aoinyom Mohan" className="w-full h-full object-cover object-top" />
+              <img src="/portrait.png" alt="Video Editing Setup" className="w-full h-full object-cover object-center" />
             </div>
           </motion.div>
 

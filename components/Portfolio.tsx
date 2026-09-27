@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Film, Smartphone, Mic, Settings, Maximize, Minimize } from 'lucide-react';
+import { Play, Film, Smartphone, Settings, Maximize, Minimize } from 'lucide-react';
 
 declare global {
   interface Window {
@@ -12,7 +12,7 @@ declare global {
 interface Project {
   id: number;
   title: string;
-  category: 'short' | 'long' | 'podcast';
+  category: 'short' | 'long';
   videoSrc: string;
   description: string;
 }
@@ -372,26 +372,21 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({ videoId, title, isActive, onP
 };
 
 const projects: Project[] = [
-  // Short Form
-  { id: 1, title: "Travel & Lifestyle", category: "short", videoSrc: "https://youtube.com/shorts/AlB3aVzMfog", description: "Dynamic Transitions" },
-  { id: 2, title: "Cinematic Product", category: "short", videoSrc: "https://youtube.com/shorts/cbFcWOnp4wc", description: "Color Grading" },
-  { id: 3, title: "Urban Exploration", category: "short", videoSrc: "https://youtube.com/shorts/SCQrs1GPPss", description: "Sound Design" },
-  { id: 4, title: "Event Highlights", category: "short", videoSrc: "https://youtube.com/shorts/jdCXM72aZrM", description: "Fast Paced" },
-  { id: 5, title: "Fitness Motivation", category: "short", videoSrc: "https://youtube.com/shorts/4Df0imbGVXk", description: "High Energy" },
-  { id: 6, title: "Tech Review", category: "short", videoSrc: "https://youtube.com/shorts/OCZmle2T9oA", description: "Clean Cuts" },
-  { id: 7, title: "Personal Brand", category: "short", videoSrc: "https://youtube.com/shorts/DfUIbZIkaxM", description: "Storytelling" },
+  // Short Form (5 new + 3 kept)
+  { id: 1, title: "Short Edit 1", category: "short", videoSrc: "https://youtube.com/shorts/F4mPkY2xgLI", description: "Dynamic Transitions" },
+  { id: 2, title: "Short Edit 2", category: "short", videoSrc: "https://youtube.com/shorts/nYVg2TMoebw", description: "Color Grading" },
+  { id: 3, title: "Short Edit 3", category: "short", videoSrc: "https://youtube.com/shorts/C2mWGoS5aUg", description: "Sound Design" },
+  { id: 4, title: "Short Edit 4", category: "short", videoSrc: "https://youtube.com/shorts/v-55QQCuXXc", description: "Fast Paced" },
+  { id: 5, title: "Short Edit 5", category: "short", videoSrc: "https://youtube.com/shorts/uL5IDVFKuRg", description: "High Energy" },
+  { id: 6, title: "Event Highlights", category: "short", videoSrc: "https://youtube.com/shorts/jdCXM72aZrM", description: "Fast Paced" },
+  { id: 7, title: "Tech Review", category: "short", videoSrc: "https://youtube.com/shorts/OCZmle2T9oA", description: "Clean Cuts" },
   { id: 8, title: "Behind The Scenes", category: "short", videoSrc: "https://youtube.com/shorts/GUWDrZTvp5s", description: "Documentary Style" },
 
-  // Long Form
-  { id: 101, title: "Narrative Documentary", category: "long", videoSrc: "https://youtu.be/m2i6PAxodTI", description: "Full Production" },
-  { id: 102, title: "Brand Commercial", category: "long", videoSrc: "https://youtu.be/_REQ7uy2hvM", description: "Visual Identity" },
-  { id: 103, title: "Corporate Promo", category: "long", videoSrc: "https://youtu.be/MxR1qDl6wjk", description: "Professional Edit" },
-  { id: 104, title: "Cinematic Showreel", category: "long", videoSrc: "https://youtu.be/Aux5nWuktko", description: "Portfolio Compilation" },
-  { id: 105, title: "VFX Breakdown", category: "long", videoSrc: "https://youtu.be/bBIPQf5DqMU", description: "Advanced Composition" },
-
-  // Podcasts
-  { id: 201, title: "Podcast Episode 1", category: "podcast", videoSrc: "https://youtu.be/TGeac7xtte4", description: "Full Episode" },
-  { id: 202, title: "Podcast Episode 2", category: "podcast", videoSrc: "https://youtu.be/oaA9ExV7CUQ", description: "Full Episode" },
+  // Long Form (4 videos from YT Studio)
+  { id: 101, title: "AI Typography", category: "long", videoSrc: "https://youtu.be/m2i6PAxodTI", description: "Motion Graphics" },
+  { id: 102, title: "VOX Style Documentary", category: "long", videoSrc: "https://youtu.be/_REQ7uy2hvM", description: "Documentary Edit" },
+  { id: 104, title: "Portfolio Showreel", category: "long", videoSrc: "https://youtu.be/Aux5nWuktko", description: "Portfolio Compilation" },
+  { id: 105, title: "Instagram Showreel", category: "long", videoSrc: "https://youtu.be/bBIPQf5DqMU", description: "Social Media" },
 ];
 
 interface ProjectCardProps {
@@ -426,10 +421,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, isActive, onPlay }) 
   );
 };
 
-type FilterType = 'all' | 'long' | 'short' | 'podcast';
+type FilterType = 'long' | 'short';
 
 const Portfolio: React.FC = () => {
-  const [filter, setFilter] = useState<FilterType>('long');
+  const [filter, setFilter] = useState<FilterType>('short');
   const [activeVideoId, setActiveVideoId] = useState<number | null>(null);
 
   const filteredProjects = projects.filter((p) => p.category === filter);
@@ -440,9 +435,8 @@ const Portfolio: React.FC = () => {
   }, []);
 
   const filterTabs: { id: FilterType; label: string; icon?: React.ReactNode }[] = [
-    { id: 'long', label: 'Long Form', icon: <Film size={14} /> },
     { id: 'short', label: 'Short Form', icon: <Smartphone size={14} /> },
-    { id: 'podcast', label: 'Podcasts', icon: <Mic size={14} /> },
+    { id: 'long', label: 'Long Form', icon: <Film size={14} /> },
   ];
 
   return (
