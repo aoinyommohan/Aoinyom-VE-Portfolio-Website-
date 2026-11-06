@@ -404,7 +404,6 @@ const projects: Project[] = [
   // Long Form
   { id: 101, title: "AI Typography", category: "long", videoSrc: "https://youtu.be/m2i6PAxodTI", description: "Motion Graphics" },
   { id: 102, title: "VOX Style Documentary", category: "long", videoSrc: "https://youtu.be/_REQ7uy2hvM", description: "Documentary Edit" },
-  { id: 104, title: "Portfolio Showreel", category: "long", videoSrc: "https://youtu.be/Aux5nWuktko", description: "Portfolio Compilation" },
   { id: 105, title: "Instagram Showreel", category: "long", videoSrc: "https://youtu.be/bBIPQf5DqMU", description: "Social Media" },
   { id: 106, title: "Cinematic Edit", category: "long", videoSrc: "https://youtu.be/buCH5VHi25U", description: "Creative Direction" },
 ];
