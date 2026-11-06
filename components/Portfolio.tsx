@@ -399,18 +399,18 @@ const projects: Project[] = [
   { id: 6, title: "Event Highlights", category: "short", videoSrc: "https://youtube.com/shorts/jdCXM72aZrM", description: "Fast Paced" },
   { id: 7, title: "Tech Review", category: "short", videoSrc: "https://youtube.com/shorts/OCZmle2T9oA", description: "Clean Cuts" },
   { id: 8, title: "Behind The Scenes", category: "short", videoSrc: "https://youtube.com/shorts/GUWDrZTvp5s", description: "Documentary Style" },
+  { id: 9, title: "Creative Short", category: "short", videoSrc: "https://youtube.com/shorts/7IX2KjQA_yc", description: "Visual Storytelling" },
 
-  // Long Form (4 videos from YT Studio)
+  // Long Form
   { id: 101, title: "AI Typography", category: "long", videoSrc: "https://youtu.be/m2i6PAxodTI", description: "Motion Graphics" },
   { id: 102, title: "VOX Style Documentary", category: "long", videoSrc: "https://youtu.be/_REQ7uy2hvM", description: "Documentary Edit" },
   { id: 104, title: "Portfolio Showreel", category: "long", videoSrc: "https://youtu.be/Aux5nWuktko", description: "Portfolio Compilation" },
   { id: 105, title: "Instagram Showreel", category: "long", videoSrc: "https://youtu.be/bBIPQf5DqMU", description: "Social Media" },
+  { id: 106, title: "Cinematic Edit", category: "long", videoSrc: "https://youtu.be/buCH5VHi25U", description: "Creative Direction" },
 ];
 
 interface ProjectCardProps {
   project: Project;
-  isActive: boolean;
-  onPlay: () => void;
   isActive: boolean;
   onPlay: () => void;
 }
