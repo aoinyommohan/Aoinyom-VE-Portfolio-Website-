@@ -400,6 +400,7 @@ const projects: Project[] = [
   { id: 7, title: "Tech Review", category: "short", videoSrc: "https://youtube.com/shorts/OCZmle2T9oA", description: "Clean Cuts" },
   { id: 8, title: "Behind The Scenes", category: "short", videoSrc: "https://youtube.com/shorts/GUWDrZTvp5s", description: "Documentary Style" },
   { id: 9, title: "Creative Short", category: "short", videoSrc: "https://youtube.com/shorts/7IX2KjQA_yc", description: "Visual Storytelling" },
+  { id: 10, title: "Short Edit 10", category: "short", videoSrc: "https://youtube.com/shorts/ZRCaKeL8pVM", description: "Creative Edit" },
 
   // Long Form
   { id: 101, title: "AI Typography", category: "long", videoSrc: "https://youtu.be/m2i6PAxodTI", description: "Motion Graphics" },
